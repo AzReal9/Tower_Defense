@@ -1,6 +1,8 @@
 
 package game;
 
+import inputs.KeyboardListener;
+import inputs.MyMouseListener;
 import javax.swing.JFrame;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -8,39 +10,53 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import scenes.Menu;
+import scenes.Playing;
+import scenes.Settings;
 
 
 public class Game extends JFrame implements Runnable {
     
    private GameScreen gameScreen;
-   private BufferedImage grass;
    private Thread gameThread;
-   
    private final double UPS_SET = 60.0;
    private final double FPS_SET = 120.0;
+   private MyMouseListener myMouseListener;
+   private KeyboardListener keyboardListener;
+   
+   //Classes
+   private Render render;
+   private Menu menu;
+   private Playing playing;
+   private Settings settings;
+        
 
    public Game(){
-
-       importGrass();
-       
-       setSize(640, 640);
        setDefaultCloseOperation(EXIT_ON_CLOSE);
-       setLocationRelativeTo(null);
-       gameScreen = new GameScreen(grass);
+       setLocationRelativeTo(null); 
+       initClasses();
        add(gameScreen);
+       pack();
        setVisible(true);
-
    }
    
-   public void importGrass(){
+   private void initClasses() {
+       render = new Render(this);
+       gameScreen = new GameScreen(this);
+       menu = new Menu(this);
+       playing = new Playing(this);
+       settings = new Settings(this);
+   }
+   
+   private void initInputs() {
+       myMouseListener = new MyMouseListener();
+       keyboardListener = new KeyboardListener();
        
-       InputStream is = getClass().getResourceAsStream("/Sprites/grass.png"); //Finds the Path for the images
-       try {       
-           grass = ImageIO.read(is);
-       } catch (IOException ex) {
-           Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-       }
-
+       addMouseListener(myMouseListener);
+       addMouseMotionListener(myMouseListener);
+       addKeyListener(keyboardListener);
+       
+       requestFocus();
    }
    
    private void start() {
@@ -57,6 +73,7 @@ public class Game extends JFrame implements Runnable {
    //Creates Window and calls "gameScreen" Class
     public static void main(String[] args) {
         Game game = new Game();
+        game.initInputs();
         game.start();
         //Calls the Constructor that opens window
     }
@@ -72,21 +89,24 @@ public class Game extends JFrame implements Runnable {
          long lastUpdate = System.nanoTime();
          int frames = 0;
          int updates = 0;
+         long now;
          
         
         while(true) {
+            
+            now = System.nanoTime();
             //render
-            if(System.nanoTime() - lastFrame >= timePerFrame) {
+            if(now - lastFrame >= timePerFrame) {
                 repaint();
-                lastFrame = System.nanoTime();
+                lastFrame = now;
                 frames++;
                 }else {
            //do nothing
                 }
             //update
-            if(System.nanoTime() - lastUpdate >= timePerUpdate) {
+            if(now - lastUpdate >= timePerUpdate) {
                updateGame();
-               lastUpdate = System.nanoTime();
+               lastUpdate = now;
                updates++;
            }
             //display FPS and UPS
@@ -98,4 +118,23 @@ public class Game extends JFrame implements Runnable {
         }
         }
     }
+    
+    //Getters and setters
+    public Render getRender() {
+        return render;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Playing getPlaying() {
+        return playing;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+
 }
