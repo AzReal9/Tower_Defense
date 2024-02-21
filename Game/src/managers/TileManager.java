@@ -21,10 +21,12 @@ public class TileManager {
 	}
 
 	private void createTiles() {
+            int id = 0;
+            
 
-		tiles.add(GRASS = new Tile(getSprite(8, 1)));
-		tiles.add(WATER = new Tile(getSprite(0, 6)));
-		tiles.add(ROAD = new Tile(getSprite(9, 0)));
+		tiles.add(GRASS = new Tile(getSprite(8, 1), id++,"Grass"));
+		tiles.add(WATER = new Tile(getSprite(0, 6), id++, "Water"));
+		tiles.add(ROAD = new Tile(getSprite(9, 0), id++, "ROAD"));
 
 	}
 
@@ -33,6 +35,10 @@ public class TileManager {
 		atlas = LoadSave.getSpriteAtlas();
 
 	}
+        
+        public Tile getTile(int id){
+            return tiles.get(id);
+        }
 
 	public BufferedImage getSprite(int id) {
 		return tiles.get(id).getSprite();

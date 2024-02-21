@@ -133,6 +133,11 @@ public class Menu extends GameScene implements SceneMethods{
 		bQuit.resetBooleans();
 	}
 
+    @Override
+    public void mouseDragged(int x, int y) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 
     
