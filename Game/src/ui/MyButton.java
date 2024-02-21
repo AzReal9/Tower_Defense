@@ -19,7 +19,7 @@ public class MyButton {
         this.y = y;
         this.width = width;
         this.height = height;
-        this.id = 0;
+        this.id = -1;
         
         initBounds();
     }
