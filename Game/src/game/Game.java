@@ -32,15 +32,17 @@ public class Game extends JFrame implements Runnable {
         
 
    public Game(){
+       initClasses();
+       
        setDefaultCloseOperation(EXIT_ON_CLOSE);
        setLocationRelativeTo(null); 
-       initClasses();
+       setResizable(false);
        add(gameScreen);
        pack();
        setVisible(true);
    }
    
-   private void initClasses() {
+    private void initClasses() {
        render = new Render(this);
        gameScreen = new GameScreen(this);
        menu = new Menu(this);
@@ -48,16 +50,7 @@ public class Game extends JFrame implements Runnable {
        settings = new Settings(this);
    }
    
-   private void initInputs() {
-       myMouseListener = new MyMouseListener();
-       keyboardListener = new KeyboardListener();
-       
-       addMouseListener(myMouseListener);
-       addMouseMotionListener(myMouseListener);
-       addKeyListener(keyboardListener);
-       
-       requestFocus();
-   }
+   
    
    private void start() {
        gameThread = new Thread(this) {};
@@ -73,7 +66,7 @@ public class Game extends JFrame implements Runnable {
    //Creates Window and calls "gameScreen" Class
     public static void main(String[] args) {
         Game game = new Game();
-        game.initInputs();
+        game.gameScreen.initInputs();
         game.start();
         //Calls the Constructor that opens window
     }
