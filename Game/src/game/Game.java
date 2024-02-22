@@ -4,12 +4,6 @@ package game;
 import inputs.KeyboardListener;
 import inputs.MyMouseListener;
 import javax.swing.JFrame;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import scenes.Menu;
 import scenes.Playing;
 import scenes.Settings;
@@ -21,8 +15,6 @@ public class Game extends JFrame implements Runnable {
    private Thread gameThread;
    private final double UPS_SET = 60.0;
    private final double FPS_SET = 120.0;
-   private MyMouseListener myMouseListener;
-   private KeyboardListener keyboardListener;
    
    //Classes
    private Render render;

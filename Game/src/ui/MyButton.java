@@ -49,24 +49,26 @@ public class MyButton {
         
     }
     
-    private void drawBody(Graphics g) {
-        if(mouseOver) {
-            g.setColor(Color.gray);
-        } else {
-        g.setColor(Color.WHITE);
-        g.fillRect(x, y, width, height);
-        }
-    }
+    
+	private void drawBody(Graphics g) {
+	    if (mouseOver) {
+		g.setColor(Color.gray);
+            }
+            else {
+		g.setColor(Color.WHITE);
+		g.fillRect(x, y, width, height);
+            }
+
+	}
     
     private void drawBorder(Graphics g) {
-        if(mousePressed) {
-        g.setColor(Color.black);
-        g.drawRect(x, y, width, height);
-        g.drawRect(x, y, width-4, height+4);
-        } else {
-        g.setColor(Color.black);
-        g.drawRect(x, y, width, height);
-        }
+
+       g.setColor(Color.black);
+	g.drawRect(x, y, width, height);
+	if (mousePressed) {
+	    g.drawRect(x + 1, y + 1, width - 2, height - 2);
+	    g.drawRect(x + 2, y + 2, width - 4, height - 4);
+	}
     }
     
     private void drawText(Graphics g) {

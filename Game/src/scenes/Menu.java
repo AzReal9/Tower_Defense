@@ -20,14 +20,13 @@ public class Menu extends GameScene implements SceneMethods{
     
     private BufferedImage img;
     private ArrayList<BufferedImage> sprites = new ArrayList<>();
-    private Random random;
     
     private MyButton bPlaying, bSettings, bQuit;
     
     
     public Menu(Game game) {
         super(game);
-        random = new Random();
+     
         importImg();
         loadSprites();
         initButtons();
@@ -47,18 +46,21 @@ public class Menu extends GameScene implements SceneMethods{
 
 	}
 
-    @Override
-    public void render(Graphics g) {
-           bPlaying.draw(g);
-           bSettings.draw(g);
-	   bQuit.draw(g); 
-    }
-    
-    private void drawButtons(Graphics g) {
-        bPlaying.draw(g);
-    }
-    
-    public void importImg(){
+	@Override
+	public void render(Graphics g) {
+
+		drawButtons(g);
+
+	}
+
+	private void drawButtons(Graphics g) {
+		bPlaying.draw(g);
+		bSettings.draw(g);
+		bQuit.draw(g);
+
+	}
+
+	public void importImg(){
        
        InputStream is = getClass().getResourceAsStream("/Sprites/spriteatlas.png"); //Finds the Path for the images
        try {       
@@ -68,21 +70,18 @@ public class Menu extends GameScene implements SceneMethods{
        }
 
    }
-    
-    private void loadSprites() {
-    
-        for(int y = 0; y < 10; y++) {
-            for(int x = 0; x < 10; x++) {
-                sprites.add(img.getSubimage(x * 32, y * 32, 32, 32));
-            }
-        }
-    }
-    
-    private int getRndInt() {
-        return random.nextInt(100);
-    }
 
-    @Override
+	private void loadSprites() {
+
+		for (int y = 0; y < 10; y++) {
+			for (int x = 0; x < 10; x++) {
+				sprites.add(img.getSubimage(x * 32, y * 32, 32, 32));
+			}
+		}
+
+	}
+
+	@Override
 	public void mouseClicked(int x, int y) {
 
 		if (bPlaying.getBounds().contains(x, y)) {
@@ -93,7 +92,7 @@ public class Menu extends GameScene implements SceneMethods{
 			System.exit(0);
 	}
 
-    @Override
+	@Override
 	public void mouseMoved(int x, int y) {
 		bPlaying.setMouseOver(false);
 		bSettings.setMouseOver(false);
@@ -133,10 +132,11 @@ public class Menu extends GameScene implements SceneMethods{
 		bQuit.resetBooleans();
 	}
 
-    @Override
-    public void mouseDragged(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+	@Override
+	public void mouseDragged(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
 
     
 

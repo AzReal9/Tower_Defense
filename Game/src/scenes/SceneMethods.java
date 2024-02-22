@@ -2,6 +2,7 @@
 package scenes;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
 public interface SceneMethods {
     

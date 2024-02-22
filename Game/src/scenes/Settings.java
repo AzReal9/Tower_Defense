@@ -67,7 +67,7 @@ public class Settings extends GameScene implements SceneMethods {
 
     @Override
     public void mouseDragged(int x, int y) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
 }

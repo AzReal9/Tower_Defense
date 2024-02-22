@@ -32,7 +32,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
 			break;
 		default:
 			break;
-                }
+		}
 
 	}
 
