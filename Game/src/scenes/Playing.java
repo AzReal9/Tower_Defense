@@ -5,6 +5,7 @@ import game.Game;
 import static game.GameStates.MENU;
 import static game.GameStates.SetGameState;
 import helpz.LevelBuild;
+import helpz.LoadSave;
 import java.awt.Color;
 import java.awt.Graphics;
 import managers.TileManager;
@@ -28,8 +29,23 @@ public class Playing extends GameScene implements SceneMethods {
 		lvl = LevelBuild.getLevelData();
 		tileManager = new TileManager();
 		bottomBar = new BottomBar(0, 640, 640, 100, this);
+                
+                LoadSave.createFile();
+                //LoadSave.writeToFile();
+               // LoadSave.ReadFromFile();
+               
+               //createDefaultLevel();
 
 	}
+        private void createDefaultLevel(){
+            int[] arr = new int[400];
+            for(int i = 0; i < arr.length; i++){
+                arr[i] = 0;
+            }
+            
+            LoadSave.CreateLvl("new Level", arr);
+            
+        }
 
 	@Override
 	public void render(Graphics g) {
