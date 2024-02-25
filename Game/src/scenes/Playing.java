@@ -1,17 +1,17 @@
 
 package scenes;
 
-import game.Game;
-import static game.GameStates.MENU;
-import static game.GameStates.SetGameState;
+import java.awt.Graphics;
+
 import helpz.LevelBuild;
 import helpz.LoadSave;
-import java.awt.Color;
-import java.awt.Graphics;
+import game.Game;
 import managers.TileManager;
 import objects.Tile;
 import ui.BottomBar;
 import ui.MyButton;
+
+import static game.GameStates.*;
 
 public class Playing extends GameScene implements SceneMethods {
 
@@ -29,23 +29,35 @@ public class Playing extends GameScene implements SceneMethods {
 		lvl = LevelBuild.getLevelData();
 		tileManager = new TileManager();
 		bottomBar = new BottomBar(0, 640, 640, 100, this);
-                
-                LoadSave.createFile();
-                //LoadSave.writeToFile();
-               // LoadSave.ReadFromFile();
-               
-               //createDefaultLevel();
+
+//		LoadSave.CreateFile();
+//		LoadSave.WriteToFile();
+//		LoadSave.ReadFromFile();
+
+		createDefaultLevel();
+		loadDefaultLevel();
 
 	}
-        private void createDefaultLevel(){
-            int[] arr = new int[400];
-            for(int i = 0; i < arr.length; i++){
-                arr[i] = 0;
-            }
-            
-            LoadSave.CreateLvl("new Level", arr);
-            
-        }
+
+	public void saveLevel() {
+
+		LoadSave.SaveLvl("new_level", lvl);
+
+	}
+
+	private void loadDefaultLevel() {
+		lvl = LoadSave.GetLvlData("new_level");
+
+	}
+
+	private void createDefaultLevel() {
+		int[] arr = new int[400];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = 0;
+
+		LoadSave.CreateLvl("new_level", arr);
+
+	}
 
 	@Override
 	public void render(Graphics g) {
