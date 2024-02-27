@@ -23,7 +23,7 @@ public class LoadSave {
          
         BufferedImage img = null;
         
-       InputStream is = LoadSave.class.getClassLoader().getResourceAsStream("Sprites/spriteatlas.png"); //Finds the Path for the images
+       InputStream is = LoadSave.class.getClassLoader().getResourceAsStream("Sprites/NEWspriteatlas.png"); //Finds the Path for the images
        try {       
            img = ImageIO.read(is);
        } catch (IOException e) {
