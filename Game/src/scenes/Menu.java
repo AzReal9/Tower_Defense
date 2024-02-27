@@ -2,6 +2,7 @@
 package scenes;
 
 import game.Game;
+import static game.GameStates.EDIT;
 import static game.GameStates.PLAYING;
 import static game.GameStates.SETTINGS;
 import static game.GameStates.SetGameState;
@@ -18,17 +19,15 @@ import ui.MyButton;
 
 public class Menu extends GameScene implements SceneMethods{
     
-    private BufferedImage img;
-    private ArrayList<BufferedImage> sprites = new ArrayList<>();
     
-    private MyButton bPlaying, bSettings, bQuit;
+    
+    private MyButton bPlaying, bSettings, bQuit, bEdit;
     
     
     public Menu(Game game) {
         super(game);
      
-        importImg();
-        loadSprites();
+       ;
         initButtons();
     }
     
@@ -43,6 +42,7 @@ public class Menu extends GameScene implements SceneMethods{
 		bPlaying = new MyButton("Play", x, y, w, h);
 		bSettings = new MyButton("Settings", x, y + yOffset, w, h);
 		bQuit = new MyButton("Quit", x, y + yOffset * 2, w, h);
+                bEdit = new MyButton("Edit", x, y + yOffset * 2, w, h);
 
 	}
 
@@ -57,35 +57,19 @@ public class Menu extends GameScene implements SceneMethods{
 		bPlaying.draw(g);
 		bSettings.draw(g);
 		bQuit.draw(g);
+                bEdit.draw(g);
+                
 
 	}
 
-	public void importImg(){
-       
-       InputStream is = getClass().getResourceAsStream("/Sprites/spriteatlas.png"); //Finds the Path for the images
-       try {       
-           img = ImageIO.read(is);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-
-   }
-
-	private void loadSprites() {
-
-		for (int y = 0; y < 10; y++) {
-			for (int x = 0; x < 10; x++) {
-				sprites.add(img.getSubimage(x * 32, y * 32, 32, 32));
-			}
-		}
-
-	}
 
 	@Override
 	public void mouseClicked(int x, int y) {
 
 		if (bPlaying.getBounds().contains(x, y)) {
 			SetGameState(PLAYING);
+                } else if(bEdit.getBounds().contains(x,y)){
+                    SetGameState(EDIT);
 		} else if (bSettings.getBounds().contains(x, y)) {
 			SetGameState(SETTINGS);
 		} else if (bQuit.getBounds().contains(x, y))
@@ -100,6 +84,8 @@ public class Menu extends GameScene implements SceneMethods{
 
 		if (bPlaying.getBounds().contains(x, y)) {
 			bPlaying.setMouseOver(true);
+                } else if(bEdit.getBounds().contains(x, y)){
+                    bEdit.setMouseOver(true);
 		} else if (bSettings.getBounds().contains(x, y)) {
 			bSettings.setMouseOver(true);
 		} else if (bQuit.getBounds().contains(x, y)) {
@@ -113,6 +99,9 @@ public class Menu extends GameScene implements SceneMethods{
 
 		if (bPlaying.getBounds().contains(x, y)) {
 			bPlaying.setMousePressed(true);
+                } else if (bEdit.getBounds().contains(x, y)){
+                    bEdit.setMousePressed(true);
+                    
 		} else if (bSettings.getBounds().contains(x, y)) {
 			bSettings.setMousePressed(true);
 		} else if (bQuit.getBounds().contains(x, y)) {
