@@ -1,35 +1,30 @@
-
 package ui;
 
 import static game.GameStates.MENU;
 import static game.GameStates.SetGameState;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 import objects.Tile;
 import scenes.Editing;
-import scenes.Playing;
 
+public class ToolBar extends Bar {
+	private Editing editing;
+	private MyButton bMenu, bSave;
+	private Tile selectedTile;
 
-public class ToolBar extends Bar{
-    
-    private MyButton bMenu, bSave;
-    
-    private Editing editing;
-    
-    private Tile selectedTile;
+	private ArrayList<MyButton> tileButtons = new ArrayList<>();
 
-    private ArrayList<MyButton> tileButtons = new ArrayList<>();
+	public ToolBar(int x, int y, int width, int height, Editing editing) {
+		super(x, y, width, height);
+		this.editing = editing;
+		initButtons();
+	}
 
-    
-    public ToolBar(int x, int y, int width, int height, Editing editing) {
-        super(x, y, width, height);
-        this.editing = editing;
-        
-        initButtons();
-    }
-    private void initButtons() {
+	private void initButtons() {
 
 		bMenu = new MyButton("Menu", 2, 642, 100, 30);
 		bSave = new MyButton("Save", 2, 674, 100, 30);
@@ -47,20 +42,12 @@ public class ToolBar extends Bar{
 		}
 
 	}
-    private void saveLevel() {
+
+	private void saveLevel() {
 		editing.saveLevel();
 	}
-    
-    
-	private void drawButtons(Graphics g) {
-		bMenu.draw(g);
-		bSave.draw(g);
 
-		drawTileButtons(g);
-		drawSelectedTile(g);
-
-	}
-        public void draw(Graphics g) {
+	public void draw(Graphics g) {
 
 		// Background
 		g.setColor(new Color(220, 123, 15));
@@ -68,6 +55,15 @@ public class ToolBar extends Bar{
 
 		// Buttons
 		drawButtons(g);
+	}
+
+	private void drawButtons(Graphics g) {
+		bMenu.draw(g);
+		bSave.draw(g);
+
+		drawTileButtons(g);
+		drawSelectedTile(g);
+
 	}
 
 	private void drawSelectedTile(Graphics g) {
@@ -104,11 +100,12 @@ public class ToolBar extends Bar{
 		}
 
 	}
-        public BufferedImage getButtImg(int id) {
+
+	public BufferedImage getButtImg(int id) {
 		return editing.getGame().getTileManager().getSprite(id);
 	}
-        
-        public void mouseClicked(int x, int y) {
+
+	public void mouseClicked(int x, int y) {
 		if (bMenu.getBounds().contains(x, y))
 			SetGameState(MENU);
 		else if (bSave.getBounds().contains(x, y))
@@ -170,5 +167,5 @@ public class ToolBar extends Bar{
 
 	}
 
-
 }
+
