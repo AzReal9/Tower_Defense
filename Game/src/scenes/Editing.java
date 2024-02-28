@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import helpz.LoadSave;
 import game.Game;
+import java.awt.event.KeyEvent;
 import objects.Tile;
 import ui.ToolBar;
 
@@ -112,13 +113,15 @@ public class Editing extends GameScene implements SceneMethods {
 
 	@Override
 	public void mousePressed(int x, int y) {
-		// TODO Auto-generated method stub
+		if(y >= 640){
+                    toolbar.mousePressed(x, y);
+                }
 
 	}
 
 	@Override
 	public void mouseReleased(int x, int y) {
-		// TODO Auto-generated method stub
+		toolbar.mouseReleased(x, y);
 
 	}
 
@@ -131,5 +134,12 @@ public class Editing extends GameScene implements SceneMethods {
 		}
 
 	}
+        
+        
+        public void keyPressed(KeyEvent e){
+            if(e.getKeyCode() == KeyEvent.VK_R){
+                toolbar.rotateSprite();
+            }
+        }
 
 }
