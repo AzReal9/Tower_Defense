@@ -10,21 +10,21 @@ import java.awt.Graphics;
 
 
 public class GameScreen extends JPanel {
-        
-    private Dimension size;
-    private final Game game;
-    
-     private MyMouseListener myMouseListener;
-   private KeyboardListener keyboardListener;
-    
 
-    public GameScreen(Game game){
-        this.game = game;
-        
-        setPanelSize();
-    }
-    
-    public void initInputs() {
+	private Game game;
+	private Dimension size;
+
+	private MyMouseListener myMouseListener;
+	private KeyboardListener keyboardListener;
+
+	public GameScreen(Game game) {
+		this.game = game;
+
+		setPanelSize();
+
+	}
+
+	public void initInputs() {
 		myMouseListener = new MyMouseListener(game);
 		keyboardListener = new KeyboardListener(game);
 
@@ -44,7 +44,6 @@ public class GameScreen extends JPanel {
 
 	}
 
-        @Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
@@ -52,5 +51,4 @@ public class GameScreen extends JPanel {
 
 	}
 
-    
 }

@@ -30,7 +30,7 @@ public class Render {
 
 			break;
 		case EDIT:
-			game.getEditer().render(g);
+			game.getEditor().render(g);
 			break;
 		default:
 			break;
