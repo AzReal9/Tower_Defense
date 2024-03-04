@@ -142,7 +142,7 @@ public class Game extends JFrame implements Runnable {
 		return settings;
 	}
 
-	public Editing getEditer() {
+	public Editing getEditor() {
 		return editing;
 	}
 

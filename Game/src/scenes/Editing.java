@@ -2,14 +2,13 @@
 package scenes;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import helpz.LoadSave;
 import game.Game;
-import java.awt.event.KeyEvent;
 import objects.Tile;
 import ui.ToolBar;
-
 
 public class Editing extends GameScene implements SceneMethods {
 
@@ -19,6 +18,10 @@ public class Editing extends GameScene implements SceneMethods {
 	private int lastTileX, lastTileY, lastTileId;
 	private boolean drawSelect;
 	private ToolBar toolbar;
+	private int ANIMATION_SPEED = 25;
+
+	private int animationIndex;
+	private int tick;
 
 	public Editing(Game game) {
 		super(game);
@@ -29,8 +32,10 @@ public class Editing extends GameScene implements SceneMethods {
 	private void loadDefaultLevel() {
 		lvl = LoadSave.GetLvlData("new_level");
 	}
+
 	@Override
 	public void render(Graphics g) {
+		updateTick();
 
 		drawLevel(g);
 		toolbar.draw(g);
@@ -38,17 +43,38 @@ public class Editing extends GameScene implements SceneMethods {
 
 	}
 
+	private void updateTick() {
+		tick++;
+		if (tick >= ANIMATION_SPEED) {
+			tick = 0;
+			animationIndex++;
+			if (animationIndex >= 4)
+				animationIndex = 0;
+		}
+	}
+
 	private void drawLevel(Graphics g) {
 		for (int y = 0; y < lvl.length; y++) {
 			for (int x = 0; x < lvl[y].length; x++) {
 				int id = lvl[y][x];
-				g.drawImage(getSprite(id), x * 32, y * 32, null);
+				if (isAnimation(id)) {
+					g.drawImage(getSprite(id, animationIndex), x * 32, y * 32, null);
+				} else
+					g.drawImage(getSprite(id), x * 32, y * 32, null);
 			}
 		}
 	}
 
+	private boolean isAnimation(int spriteID) {
+		return game.getTileManager().isSpriteAnimation(spriteID);
+	}
+
 	private BufferedImage getSprite(int spriteID) {
 		return game.getTileManager().getSprite(spriteID);
+	}
+
+	private BufferedImage getSprite(int spriteID, int animationIndex) {
+		return game.getTileManager().getAniSprite(spriteID,animationIndex);
 	}
 
 	private void drawSelectedTile(Graphics g) {
@@ -76,14 +102,14 @@ public class Editing extends GameScene implements SceneMethods {
 			int tileX = x / 32;
 			int tileY = y / 32;
 
-			if (lastTileX == tileX && lastTileY == tileY && lastTileId == selectedTile.getID())
+			if (lastTileX == tileX && lastTileY == tileY && lastTileId == selectedTile.getId())
 				return;
 
 			lastTileX = tileX;
 			lastTileY = tileY;
-			lastTileId = selectedTile.getID();
+			lastTileId = selectedTile.getId();
 
-			lvl[tileY][tileX] = selectedTile.getID();
+			lvl[tileY][tileX] = selectedTile.getId();
 		}
 	}
 
@@ -113,9 +139,8 @@ public class Editing extends GameScene implements SceneMethods {
 
 	@Override
 	public void mousePressed(int x, int y) {
-		if(y >= 640){
-                    toolbar.mousePressed(x, y);
-                }
+		if (y >= 640)
+			toolbar.mousePressed(x, y);
 
 	}
 
@@ -134,12 +159,10 @@ public class Editing extends GameScene implements SceneMethods {
 		}
 
 	}
-        
-        
-        public void keyPressed(KeyEvent e){
-            if(e.getKeyCode() == KeyEvent.VK_R){
-                toolbar.rotateSprite();
-            }
-        }
+
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_R)
+			toolbar.rotateSprite();
+	}
 
 }
