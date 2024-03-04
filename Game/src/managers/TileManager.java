@@ -30,7 +30,7 @@ public class TileManager {
 
 	private void createTiles() {
 
-<<<<<<< HEAD
+
 		tiles.add(GRASS = new Tile(getSprite(9, 0), id++,"Grass"));
 		tiles.add(WATER = new Tile(getSprite(0, 0), id++, "Water"));
 		
@@ -48,7 +48,7 @@ public class TileManager {
 		corners.add(BR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 
                         0, 5, 0), 270, 1), id++,
 				"BR_Water_Corner"));
-=======
+
 		int id = 0;
 
 		tiles.add(GRASS = new Tile(getSprite(9, 0), id++, "Grass"));
@@ -56,7 +56,7 @@ public class TileManager {
 
 		roadsS.add(ROAD_LR = new Tile(getSprite(8, 0), id++, "Road_LR"));
 		roadsS.add(ROAD_TB = new Tile(ImgFix.getRotImg(getSprite(8, 0), 90), id++, "TB_Road"));
->>>>>>> a99850bb8cca6018acbc40519fec103bccdf57f8
+
 
 		roadsC.add(ROAD_B_TO_R = new Tile(getSprite(7, 0), id++, "Road_Bottom_To_Right"));
 		roadsC.add(ROAD_L_TO_B = new Tile(ImgFix.getRotImg(getSprite(7, 0), 90), id++, "Road_Left_To_Bottom"));
