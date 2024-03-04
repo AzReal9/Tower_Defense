@@ -40,12 +40,16 @@ public class TileManager {
                 roadsS.add(ROAD_LR = new Tile(getSprite(8, 0), id++, "ROAD_LR"));
                 roadsS.add(ROAD_TB = new Tile(ImgFix.getRotImg(getSprite(8, 0), 90), id++, "TB_Road"));
                 
-                corners.add(BL_WATER_CORNER = new Tile(ImgFix.buildImg(getImg(0, 0, 5, 0)), id++, "BL Water Corner"));
-                corners.add(TL_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 5, 0), 90, 1), id++, "TL Water Corner"));
-                corners.add(TR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 5, 0), 180, 1), id++,
+                corners.add(BL_WATER_CORNER = new Tile(ImgFix.buildImg(getImg(0, 0, 5, 
+                        0)), id++, "BL Water Corner"));
+                corners.add(TL_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 
+                        5, 0), 90, 1), id++, "TL Water Corner"));
+                corners.add(TR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 
+                        0, 5, 0), 180, 1), id++,
 				"TR_Water_Corner"));
 
-		corners.add(BR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 5, 0), 270, 1), id++,
+		corners.add(BR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 
+                        0, 5, 0), 270, 1), id++,
 				"BR_Water_Corner"));
 
                 

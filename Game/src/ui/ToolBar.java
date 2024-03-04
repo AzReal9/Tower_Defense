@@ -253,7 +253,7 @@ public class ToolBar extends Bar {
                 bWater.resetBooleans();
 		  for(MyButton b : map.keySet()){
                       b.resetBooleans();
-					return;
+					
                     }
                     }
 	}
