@@ -30,21 +30,6 @@ public class TileManager {
 
 	private void createTiles() {
 
-
-		tiles.add(GRASS = new Tile(getSprite(9, 0), id++,"Grass"));
-		tiles.add(WATER = new Tile(getSprite(0, 0), id++, "Water"));
-		
-                roadsS.add(ROAD_LR = new Tile(getSprite(8, 0), id++, "ROAD_LR"));
-                roadsS.add(ROAD_TB = new Tile(ImgFix.getRotImg(getSprite(8, 0), 90), id++, "TB_Road"));
-                
-                corners.add(BL_WATER_CORNER = new Tile(ImgFix.buildImg(getImg(0, 0, 5, 0)), id++, "BL Water Corner"));
-                corners.add(TL_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 5, 0), 90, 1), id++, "TL Water Corner"));
-                corners.add(TR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 5, 0), 180, 1), id++,
-				"TR_Water_Corner"));
-
-		corners.add(BR_WATER_CORNER = new Tile(ImgFix.getBuildRotImg(getImg(0, 0, 5, 0), 270, 1), id++,
-				"BR_Water_Corner"));
-
 		int id = 0;
 
 		tiles.add(GRASS = new Tile(getSprite(9, 0), id++, "Grass"));
@@ -52,7 +37,6 @@ public class TileManager {
 
 		roadsS.add(ROAD_LR = new Tile(getSprite(8, 0), id++, "Road_LR"));
 		roadsS.add(ROAD_TB = new Tile(ImgFix.getRotImg(getSprite(8, 0), 90), id++, "TB_Road"));
-
 
 		roadsC.add(ROAD_B_TO_R = new Tile(getSprite(7, 0), id++, "Road_Bottom_To_Right"));
 		roadsC.add(ROAD_L_TO_B = new Tile(ImgFix.getRotImg(getSprite(7, 0), 90), id++, "Road_Left_To_Bottom"));
