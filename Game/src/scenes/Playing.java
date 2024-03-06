@@ -8,12 +8,14 @@ import helpz.LoadSave;
 import game.Game;
 import ui.ActionBar;
 import java.awt.image.BufferedImage;
+import managers.EnemyManager;
 
 public class Playing extends GameScene implements SceneMethods {
 
 	private int[][] lvl;
 	private ActionBar bottomBar;
 	private int mouseX, mouseY;
+        private EnemyManager enemyManager;
 
 	public Playing(Game game) {
 		super(game);
@@ -21,6 +23,8 @@ public class Playing extends GameScene implements SceneMethods {
 		loadDefaultLevel();
 
 		bottomBar = new ActionBar(0, 640, 640, 100, this);
+                
+                enemyManager = new EnemyManager(this);
 
 	}
 
@@ -28,6 +32,10 @@ public class Playing extends GameScene implements SceneMethods {
 		lvl = LoadSave.GetLvlData("new_level");
 
 	}
+        
+        public void update(){
+            enemyManager.update();
+        }
 
 	public void setLevel(int[][] lvl) {
 		this.lvl = lvl;
@@ -38,6 +46,7 @@ public class Playing extends GameScene implements SceneMethods {
 
 		drawLevel(g);
 		bottomBar.draw(g);
+                enemyManager.draw(g);
 
 	}
 
