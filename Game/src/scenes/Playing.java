@@ -1,4 +1,3 @@
-
 package scenes;
 
 import java.awt.Graphics;
@@ -6,16 +5,15 @@ import java.awt.image.BufferedImage;
 
 import helpz.LoadSave;
 import game.Game;
-import ui.ActionBar;
-import java.awt.image.BufferedImage;
 import managers.EnemyManager;
+import ui.ActionBar;
 
 public class Playing extends GameScene implements SceneMethods {
 
 	private int[][] lvl;
 	private ActionBar bottomBar;
 	private int mouseX, mouseY;
-        private EnemyManager enemyManager;
+	private EnemyManager enemyManager;
 
 	public Playing(Game game) {
 		super(game);
@@ -23,8 +21,8 @@ public class Playing extends GameScene implements SceneMethods {
 		loadDefaultLevel();
 
 		bottomBar = new ActionBar(0, 640, 640, 100, this);
-                
-                enemyManager = new EnemyManager(this);
+
+		enemyManager = new EnemyManager(this);
 
 	}
 
@@ -32,13 +30,13 @@ public class Playing extends GameScene implements SceneMethods {
 		lvl = LoadSave.GetLvlData("new_level");
 
 	}
-        
-        public void update(){
-            enemyManager.update();
-        }
 
 	public void setLevel(int[][] lvl) {
 		this.lvl = lvl;
+	}
+
+	public void update() {
+		enemyManager.update();
 	}
 
 	@Override
@@ -46,11 +44,12 @@ public class Playing extends GameScene implements SceneMethods {
 
 		drawLevel(g);
 		bottomBar.draw(g);
-                enemyManager.draw(g);
+		enemyManager.draw(g);
 
 	}
 
 	private void drawLevel(Graphics g) {
+
 		for (int y = 0; y < lvl.length; y++) {
 			for (int x = 0; x < lvl[y].length; x++) {
 				int id = lvl[y][x];
@@ -67,12 +66,12 @@ public class Playing extends GameScene implements SceneMethods {
 	public void mouseClicked(int x, int y) {
 		if (y >= 640)
 			bottomBar.mouseClicked(x, y);
-
+		else
+			enemyManager.addEnemy(x, y);
 	}
 
 	@Override
 	public void mouseMoved(int x, int y) {
-
 		if (y >= 640)
 			bottomBar.mouseMoved(x, y);
 		else {

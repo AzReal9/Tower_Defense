@@ -1,4 +1,3 @@
-
 package helpz;
 
 import java.awt.image.BufferedImage;
@@ -9,41 +8,35 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 
-
-
 public class LoadSave {
-    
 
-    
-    public static BufferedImage getSpriteAtlas() {
-         
-        BufferedImage img = null;
-        
-       InputStream is = LoadSave.class.getClassLoader().getResourceAsStream("Sprites/NEWspriteatlas.png"); //Finds the Path for the images
-       try {       
-           img = ImageIO.read(is);
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-       return img;
-    }
-    
-    //text file
-    public static void createFile(){ 
-        File textFile = new File("res/testfile.txt");
-        
-        try {
-            textFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public static void CreateLvl(String name, int[] idArr) {
+	public static BufferedImage getSpriteAtlas() {
+		BufferedImage img = null;
+		InputStream is = LoadSave.class.getClassLoader().getResourceAsStream("Sprites/NEWspriteatlas.png");
+
+		try {
+			img = ImageIO.read(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return img;
+	}
+
+	public static void CreateFile() {
+		File txtFile = new File("res/testTextFile.txt");
+
+		try {
+			txtFile.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void CreateLvl(String name, int[] idArr) {
 		File newLevel = new File("res/" + name + ".txt");
 		if (newLevel.exists()) {
 			System.out.println("File: " + name + " already exists!");
@@ -115,6 +108,7 @@ public class LoadSave {
 		}
 
 	}
-    
-    
 }
+
+
+
