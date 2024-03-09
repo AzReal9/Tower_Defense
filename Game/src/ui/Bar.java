@@ -1,9 +1,6 @@
 
 package ui;
 
-
-
-
 public class Bar {
     
     protected int x, y, width, height;

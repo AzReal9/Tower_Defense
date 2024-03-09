@@ -47,7 +47,7 @@ public class Game extends JFrame implements Runnable {
 		for (int i = 0; i < arr.length; i++)
 			arr[i] = 0;
 
-		LoadSave.CreateLvl("new_level", arr);
+		LoadSave.CreateLevel("new_level", arr);
 
 	}
 
@@ -72,6 +72,7 @@ public class Game extends JFrame implements Runnable {
 	private void updateGame() {
 		switch (GameStates.gameState) {
 		case EDIT:
+			editing.update();
 			break;
 		case MENU:
 			break;

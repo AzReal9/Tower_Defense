@@ -1,35 +1,21 @@
 
 package scenes;
 
-import game.Game;
-import static game.GameStates.EDIT;
-import static game.GameStates.PLAYING;
-import static game.GameStates.SETTINGS;
-import static game.GameStates.SetGameState;
-
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.imageio.ImageIO;
+import game.Game;
 import ui.MyButton;
+import static game.GameStates.*;
 
-public class Menu extends GameScene implements SceneMethods{
-    
-    
-    
-    private MyButton bPlaying, bSettings, bQuit, bEdit;
-    
-    
-    public Menu(Game game) {
-        super(game);
-        initButtons();
-    }
-    
-    private void initButtons() {
+public class Menu extends GameScene implements SceneMethods {
+
+	private MyButton bPlaying, bEdit, bSettings, bQuit;
+
+	public Menu(Game game) {
+		super(game);
+		initButtons();
+	}
+
+	private void initButtons() {
 
 		int w = 150;
 		int h = w / 3;
@@ -38,9 +24,9 @@ public class Menu extends GameScene implements SceneMethods{
 		int yOffset = 100;
 
 		bPlaying = new MyButton("Play", x, y, w, h);
-		bSettings = new MyButton("Settings", x, y + yOffset, w, h);
-		bQuit = new MyButton("Quit", x, y + yOffset * 2, w, h);
-                bEdit = new MyButton("Edit", x, y + yOffset * 2, w, h);
+		bEdit = new MyButton("Edit", x, y + yOffset, w, h);
+		bSettings = new MyButton("Settings", x, y + yOffset * 2, w, h);
+		bQuit = new MyButton("Quit", x, y + yOffset * 3, w, h);
 
 	}
 
@@ -53,13 +39,11 @@ public class Menu extends GameScene implements SceneMethods{
 
 	private void drawButtons(Graphics g) {
 		bPlaying.draw(g);
+		bEdit.draw(g);
 		bSettings.draw(g);
 		bQuit.draw(g);
-                bEdit.draw(g);
-                
 
 	}
-
 
 	@Override
 	public void mouseClicked(int x, int y) {
@@ -113,18 +97,16 @@ public class Menu extends GameScene implements SceneMethods{
 
 	private void resetButtons() {
 		bPlaying.resetBooleans();
+		bEdit.resetBooleans();
 		bSettings.resetBooleans();
 		bQuit.resetBooleans();
-                bEdit.resetBooleans();
+
 	}
 
 	@Override
 	public void mouseDragged(int x, int y) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-    
-
-    
 }

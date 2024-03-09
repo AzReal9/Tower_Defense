@@ -1,12 +1,13 @@
 
 package scenes;
 
-import game.Game;
-import static game.GameStates.MENU;
-import static game.GameStates.SetGameState;
 import java.awt.Color;
 import java.awt.Graphics;
+
+import game.Game;
 import ui.MyButton;
+
+import static game.GameStates.*;
 
 public class Settings extends GameScene implements SceneMethods {
 
@@ -65,9 +66,11 @@ public class Settings extends GameScene implements SceneMethods {
 
 	}
 
-    @Override
-    public void mouseDragged(int x, int y) {
-        
-    }
+	@Override
+	public void mouseDragged(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
+

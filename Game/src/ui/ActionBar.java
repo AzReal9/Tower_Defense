@@ -1,3 +1,4 @@
+
 package ui;
 
 import static game.GameStates.MENU;
@@ -64,3 +65,4 @@ public class ActionBar extends Bar {
 	}
 
 }
+

@@ -1,3 +1,4 @@
+
 package helpz;
 
 import java.awt.image.BufferedImage;
@@ -11,11 +12,13 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
+import objects.PathPoint;
+
 public class LoadSave {
 
 	public static BufferedImage getSpriteAtlas() {
 		BufferedImage img = null;
-		InputStream is = LoadSave.class.getClassLoader().getResourceAsStream("Sprites/NEWspriteatlas.png");
+		InputStream is = LoadSave.class.getClassLoader().getResourceAsStream("Sprites/spriteatlas.png");
 
 		try {
 			img = ImageIO.read(is);
@@ -36,7 +39,7 @@ public class LoadSave {
 
 	}
 
-	public static void CreateLvl(String name, int[] idArr) {
+	public static void CreateLevel(String name, int[] idArr) {
 		File newLevel = new File("res/" + name + ".txt");
 		if (newLevel.exists()) {
 			System.out.println("File: " + name + " already exists!");
@@ -47,16 +50,21 @@ public class LoadSave {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			WriteToFile(newLevel, idArr);
+
+			WriteToFile(newLevel, idArr, new PathPoint(0, 0), new PathPoint(0, 0));
 		}
 
 	}
 
-	private static void WriteToFile(File f, int[] idArr) {
+	private static void WriteToFile(File f, int[] idArr, PathPoint start, PathPoint end) {
 		try {
 			PrintWriter pw = new PrintWriter(f);
 			for (Integer i : idArr)
 				pw.println(i);
+			pw.println(start.getxCord());
+			pw.println(start.getyCord());
+			pw.println(end.getxCord());
+			pw.println(end.getyCord());
 
 			pw.close();
 		} catch (FileNotFoundException e) {
@@ -65,11 +73,11 @@ public class LoadSave {
 
 	}
 
-	public static void SaveLvl(String name, int[][] idArr) {
+	public static void SaveLevel(String name, int[][] idArr, PathPoint start, PathPoint end) {
 		File levelFile = new File("res/" + name + ".txt");
 
 		if (levelFile.exists()) {
-			WriteToFile(levelFile, Utilz.TwoDto1DintArr(idArr));
+			WriteToFile(levelFile, Utilz.TwoDto1DintArr(idArr), start, end);
 		} else {
 			System.out.println("File: " + name + " does not exists! ");
 			return;
@@ -95,7 +103,32 @@ public class LoadSave {
 		return list;
 	}
 
-	public static int[][] GetLvlData(String name) {
+	public static ArrayList<PathPoint> GetLevelPathPoints(String name) {
+    File lvlFile = new File("res/" + name + ".txt");
+
+    if (lvlFile.exists()) {
+        ArrayList<Integer> list = ReadFromFile(lvlFile);
+
+        // Ensure that the list has enough elements
+        if (list.size() >= 404) {
+            ArrayList<PathPoint> points = new ArrayList<>();
+            points.add(new PathPoint(list.get(400), list.get(401)));
+            points.add(new PathPoint(list.get(402), list.get(403)));
+
+            return points;
+        } else {
+            System.out.println("File: " + name + " does not contain enough data for path points.");
+            // Return an empty list instead of null to avoid NPE
+            return new ArrayList<>();
+        }
+    } else {
+        System.out.println("File: " + name + " does not exist!");
+        // Return an empty list instead of null to avoid NPE
+        return new ArrayList<>();
+    }
+}
+
+	public static int[][] GetLevelData(String name) {
 		File lvlFile = new File("res/" + name + ".txt");
 
 		if (lvlFile.exists()) {
@@ -109,6 +142,3 @@ public class LoadSave {
 
 	}
 }
-
-
-
