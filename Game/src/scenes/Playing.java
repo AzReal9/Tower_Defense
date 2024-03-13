@@ -1,6 +1,8 @@
 package scenes;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import helpz.LoadSave;
@@ -15,6 +17,7 @@ import static helpz.Constants.Tiles.GRASS_TILE;
 public class Playing extends GameScene implements SceneMethods {
 
 	private int[][] lvl;
+
 	private ActionBar actionBar;
 	private int mouseX, mouseY;
 	private EnemyManager enemyManager;
@@ -59,6 +62,13 @@ public class Playing extends GameScene implements SceneMethods {
 		enemyManager.draw(g);
 		towerManager.draw(g);
 		drawSelectedTower(g);
+		drawHighlight(g);
+	}
+
+	private void drawHighlight(Graphics g) {
+		g.setColor(Color.WHITE);
+		g.drawRect(mouseX, mouseY, 32, 32);
+		
 	}
 
 	private void drawSelectedTower(Graphics g) {
@@ -94,21 +104,42 @@ public class Playing extends GameScene implements SceneMethods {
 
 	@Override
 	public void mouseClicked(int x, int y) {
+		// Below 640y
 		if (y >= 640)
 			actionBar.mouseClicked(x, y);
 		else {
-			if (selectedTower != null)
+			// Above 640y
+			if (selectedTower != null) {
+				// Trying to place a tower
 				if (isTileGrass(mouseX, mouseY)) {
-					towerManager.addTower(selectedTower, mouseX, mouseY);
-					selectedTower = null;
+					if (getTowerAt(mouseX, mouseY) == null) {
+						towerManager.addTower(selectedTower, mouseX, mouseY);
+						selectedTower = null;
+					}
 				}
+			} else {
+				// Not trying to place a tower
+				// Checking if a tower exists at x,y
+				Tower t = getTowerAt(mouseX, mouseY);
+				actionBar.displayTower(t);
+			}
 		}
+	}
+
+	private Tower getTowerAt(int x, int y) {
+		return towerManager.getTowerAt(x, y);
 	}
 
 	private boolean isTileGrass(int x, int y) {
 		int id = lvl[y / 32][x / 32];
 		int tileType = game.getTileManager().getTile(id).getTileType();
 		return tileType == GRASS_TILE;
+	}
+
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			selectedTower = null;
+		}
 	}
 
 	@Override
@@ -123,9 +154,9 @@ public class Playing extends GameScene implements SceneMethods {
 
 	@Override
 	public void mousePressed(int x, int y) {
-		if (y >= 640) {
+		if (y >= 640)
 			actionBar.mousePressed(x, y);
-		}
+
 	}
 
 	@Override
