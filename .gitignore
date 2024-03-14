@@ -1,3 +1,8 @@
 /game/build/
 /Game/nbproject/private/
 /Game/build/
+.idea/
+Game.iml
+.classpath
+.project
+out
