@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import Enemies.Enemy;
 import helpz.LoadSave;
 import objects.Tower;
 import scenes.Playing;
@@ -33,6 +34,30 @@ public class TowerManager {
 	}
 
 	public void update() {
+		for (Tower t : towers) {
+			t.update();
+			attackEnemyIfClose(t);
+		}
+	}
+
+	private void attackEnemyIfClose(Tower t) {
+		for (Enemy e : playing.getEnemyManger().getEnemies()) {
+			if (e.isAlive())
+				if (isEnemyInRange(t, e)) {
+					if (t.isCooldownOver()) {
+						playing.shootEnemy(t, e);
+						t.resetCooldown();
+					}
+				} else {
+					// we do nothing
+				}
+		}
+
+	}
+
+	private boolean isEnemyInRange(Tower t, Enemy e) {
+		int range = helpz.Utilz.GetHypoDistance(t.getX(), t.getY(), e.getX(), e.getY());
+		return range < t.getRange();
 	}
 
 	public void draw(Graphics g) {
@@ -53,6 +78,8 @@ public class TowerManager {
 	}
 
 }
+
+
 
 
 
