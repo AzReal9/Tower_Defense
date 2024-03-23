@@ -88,8 +88,8 @@ public class ProjectileManager {
 						explosions.add(new Explosion(p.getPos()));
 						explodeOnEnemies(p);
 					}
-				} else {
-					// we do nothing
+				} else if (isProjOutsideBounds(p)) {
+					p.setActive(false);
 				}
 			}
 
@@ -121,13 +121,22 @@ public class ProjectileManager {
 			if (e.isAlive())
 				if (e.getBounds().contains(p.getPos())) {
 					e.hurt(p.getDmg());
-					if(p.getProjectileType() == CHAINS)
+					if (p.getProjectileType() == CHAINS)
 						e.slow();
 
 					return true;
 				}
 		}
 		return false;
+	}
+
+	private boolean isProjOutsideBounds(Projectile p) {
+		if (p.getPos().x >= 0)
+			if (p.getPos().x <= 640)
+				if (p.getPos().y >= 0)
+					if (p.getPos().y <= 800)
+						return false;
+		return true;
 	}
 
 	public void draw(Graphics g) {
@@ -147,8 +156,6 @@ public class ProjectileManager {
 			}
 
 		drawExplosions(g2d);
-		
-		
 
 	}
 
@@ -196,7 +203,15 @@ public class ProjectileManager {
 		}
 	}
 
+	public void reset() {
+		projectiles.clear();
+		explosions.clear();
+
+		proj_id = 0;
+	}
+
 }
+
 
 
 

@@ -14,10 +14,14 @@
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/res/new_level.txt</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/build.xml</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/game/Render.java</file>
+            <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/managers/WaveManager.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/helpz/LoadSave.java</file>
+            <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/scenes/GameOver.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/Sprites/spriteatlasNEWEST.png</file>
+            <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/objects/Projectile.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/Enemies/Orc.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/ui/ActionBar.java</file>
+            <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/managers/ProjectileManager.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/Enemies/Knight.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/scenes/Settings.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/Enemies/Enemy.java</file>
@@ -27,6 +31,7 @@
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/scenes/Editing.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/scenes/SceneMethods.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/Enemies/Bat.java</file>
+            <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/events/Wave.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/managers/EnemyManager.java</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/res%20new%20Level.txt</file>
             <file>file:/C:/Users/Austi/OneDrive/Documents/GitHub/Tower_Defense/Game/src/scenes/GameScene.java</file>

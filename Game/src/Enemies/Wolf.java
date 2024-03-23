@@ -3,10 +3,12 @@ package Enemies;
 
 import static helpz.Constants.Enemies.WOLF;
 
+import managers.EnemyManager;
+
 public class Wolf extends Enemy {
 
-	public Wolf(float x, float y, int ID) {
-		super(x, y, ID, WOLF);
+	public Wolf(float x, float y, int ID, EnemyManager em) {
+		super(x, y, ID, WOLF, em);
 	}
 
 }
