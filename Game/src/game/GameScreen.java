@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 import inputs.KeyboardListener;
 import inputs.MyMouseListener;
 
+/**
+ * The GameScreen class represents the JPanel where the game is rendered and interacts with user inputs.
+ */
 public class GameScreen extends JPanel {
 
 	private Game game;
@@ -16,6 +19,7 @@ public class GameScreen extends JPanel {
 	private MyMouseListener myMouseListener;
 	private KeyboardListener keyboardListener;
 
+        //Constructs a new GameScreen with the specified Game instance.
 	public GameScreen(Game game) {
 		this.game = game;
 
@@ -23,6 +27,7 @@ public class GameScreen extends JPanel {
 
 	}
 
+        //Initializes input listeners for mouse and keyboard.
 	public void initInputs() {
 		myMouseListener = new MyMouseListener(game);
 		keyboardListener = new KeyboardListener(game);

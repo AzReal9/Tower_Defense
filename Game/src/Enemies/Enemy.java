@@ -8,6 +8,8 @@ import managers.EnemyManager;
 import static helpz.Constants.Direction.*;
 
 public abstract class Enemy {
+    
+      // Fields to store enemy properties.
 	protected EnemyManager enemyManager;
 	protected float x, y;
 	protected Rectangle bounds;
@@ -20,6 +22,7 @@ public abstract class Enemy {
 	protected int slowTickLimit = 120;
 	protected int slowTick = slowTickLimit;
 
+        // Constructor for creating an enemy object.
 	public Enemy(float x, float y, int ID, int enemyType, EnemyManager enemyManager) {
 		this.x = x;
 		this.y = y;
@@ -36,6 +39,7 @@ public abstract class Enemy {
 		maxHealth = health;
 	}
 
+        // Method to reduce enemy's health.
 	public void hurt(int dmg) {
 		this.health -= dmg;
 		if (health <= 0) {
@@ -45,6 +49,7 @@ public abstract class Enemy {
 
 	}
 
+        // Method to kill the enemy.
 	public void kill() {
 		// Is for killing enemy, when it reaches the end.
 		alive = false;
@@ -55,6 +60,7 @@ public abstract class Enemy {
 		slowTick = 0;
 	}
 
+        // Method to move the enemy.
 	public void move(float speed, int dir) {
 		lastDir = dir;
 
@@ -81,6 +87,7 @@ public abstract class Enemy {
 		updateHitbox();
 	}
 
+        // Method to update hitbox position.
 	private void updateHitbox() {
 		bounds.x = (int) x;
 		bounds.y = (int) y;
@@ -92,6 +99,7 @@ public abstract class Enemy {
 		this.y = y;
 	}
 
+          // Getter method to retrieve the health as a float value between 0 and 1.
 	public float getHealthBarFloat() {
 		return health / (float) maxHealth;
 	}

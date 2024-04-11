@@ -1,6 +1,9 @@
 
 package helpz;
 
+/**
+ * The Constants class contains static inner classes defining various constants used in the game.
+ */
 public class Constants {
 
 	public static class Projectiles {
@@ -8,6 +11,7 @@ public class Constants {
 		public static final int CHAINS = 1;
 		public static final int BOMB = 2;
 
+                //Get the speed of the projectile based on its type.
 		public static float GetSpeed(int type) {
 			switch (type) {
 			case ARROW:
@@ -53,11 +57,11 @@ public class Constants {
 		public static int GetStartDmg(int towerType) {
 			switch (towerType) {
 			case CANNON:
-				return 15;
+				return 20;
 			case ARCHER:
 				return 5;
 			case WIZARD:
-				return 0;
+				return 2;
 			}
 
 			return 0;
@@ -90,6 +94,7 @@ public class Constants {
 		}
 	}
 
+        //The Direction class contains constants representing directions.
 	public static class Direction {
 		public static final int LEFT = 0;
 		public static final int UP = 1;
@@ -97,6 +102,7 @@ public class Constants {
 		public static final int DOWN = 3;
 	}
 
+        //The Enemies class contains constants and methods related to enemies.
 	public static class Enemies {
 
 		public static final int ORC = 0;
@@ -127,7 +133,7 @@ public class Constants {
 			case KNIGHT:
 				return 0.3f;
 			case WOLF:
-				return 0.75f;
+				return 1f;
 			}
 			return 0;
 		}
@@ -135,11 +141,11 @@ public class Constants {
 		public static int GetStartHealth(int enemyType) {
 			switch (enemyType) {
 			case ORC:
-				return 100;
+				return 50;
 			case BAT:
 				return 60;
 			case KNIGHT:
-				return 250;
+				return 110;
 			case WOLF:
 				return 85;
 			}
@@ -147,6 +153,7 @@ public class Constants {
 		}
 	}
 
+        //The Tiles class contains constants representing tile types.
 	public static class Tiles {
 		public static final int WATER_TILE = 0;
 		public static final int GRASS_TILE = 1;

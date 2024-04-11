@@ -22,6 +22,7 @@ public class TowerManager {
 		loadTowerImgs();
 	}
 
+        // Load tower images from sprite atlas
 	private void loadTowerImgs() {
 		BufferedImage atlas = LoadSave.getSpriteAtlas();
 		towerImgs = new BufferedImage[3];
@@ -29,6 +30,7 @@ public class TowerManager {
 			towerImgs[i] = atlas.getSubimage((4 + i) * 32, 32, 32, 32);
 	}
 
+        // Add a tower to the list
 	public void addTower(Tower selectedTower, int xPos, int yPos) {
 		towers.add(new Tower(xPos, yPos, towerAmount++, selectedTower.getTowerType()));
 	}
@@ -45,6 +47,7 @@ public class TowerManager {
 				t.upgradeTower();
 	}
 
+        // Update tower status and attack enemies if in range
 	public void update() {
 		for (Tower t : towers) {
 			t.update();

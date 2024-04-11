@@ -9,6 +9,11 @@ import helpz.LoadSave;
 import objects.Tile;
 import static helpz.Constants.Tiles.*;
 
+
+
+/**
+ * The TileManager class manages tiles in the game.
+ */
 public class TileManager {
 
 	public Tile GRASS, WATER, ROAD_LR, ROAD_TB, ROAD_B_TO_R, ROAD_L_TO_B, ROAD_L_TO_T, ROAD_T_TO_R, BL_WATER_CORNER, TL_WATER_CORNER, TR_WATER_CORNER, BR_WATER_CORNER, T_WATER, R_WATER, B_WATER,
@@ -30,6 +35,7 @@ public class TileManager {
 
 	}
 
+         // Create different types of tiles
 	private void createTiles() {
 
 		int id = 0;
@@ -75,6 +81,7 @@ public class TileManager {
 		atlas = LoadSave.getSpriteAtlas();
 	}
 
+         // Get a tile by its ID
 	public Tile getTile(int id) {
 		return tiles.get(id);
 	}
@@ -83,10 +90,12 @@ public class TileManager {
 		return tiles.get(id).getSprite();
 	}
 
+        // Get an animated sprite by its ID and animation index
 	public BufferedImage getAniSprite(int id, int animationIndex) {
 		return tiles.get(id).getSprite(animationIndex);
 	}
 
+        // Get an array of animated sprites given the starting coordinates
 	private BufferedImage[] getAniSprites(int xCord, int yCord) {
 		BufferedImage[] arr = new BufferedImage[4];
 		for (int i = 0; i < 4; i++) {
@@ -105,6 +114,7 @@ public class TileManager {
 		return tiles.get(spriteID).isAnimation();
 	}
 
+         // Getters for different types of tiles
 	public ArrayList<Tile> getRoadsS() {
 		return roadsS;
 	}

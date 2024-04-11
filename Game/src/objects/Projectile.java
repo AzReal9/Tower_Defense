@@ -3,6 +3,10 @@ package objects;
 
 import java.awt.geom.Point2D;
 
+/**
+ * The Projectile class represents a projectile fired by towers to attack enemies.
+ */
+
 public class Projectile {
 
 	private Point2D.Float pos;
@@ -20,6 +24,10 @@ public class Projectile {
 		this.projectileType = projectileType;
 	}
 
+        /**
+     * Moves the projectile based on its speed.
+     */
+        
 	public void move() {
 		pos.x += xSpeed;
 		pos.y += ySpeed;
@@ -45,6 +53,11 @@ public class Projectile {
 		return active;
 	}
 
+        /**
+     * Sets the activity status of the projectile.
+     * @param active The new activity status.
+     */
+        
 	public void setActive(boolean active) {
 		this.active = active;
 	}

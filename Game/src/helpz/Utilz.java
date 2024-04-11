@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Utilz {
 
+    //Converts an ArrayList of integers to a two-dimensional integer array.
 	public static int[][] ArrayListTo2Dint(ArrayList<Integer> list, int ySize, int xSize) {
 		int[][] newArr = new int[ySize][xSize];
 
@@ -18,6 +19,7 @@ public class Utilz {
 
 	}
 
+        //Converts a two-dimensional integer array to a one-dimensional integer array.
 	public static int[] TwoDto1DintArr(int[][] twoArr) {
 		int[] oneArr = new int[twoArr.length * twoArr[0].length];
 
@@ -30,6 +32,7 @@ public class Utilz {
 		return oneArr;
 	}
 
+        // Calculates the distance between two points.
 	public static int GetHypoDistance(float x1, float y1, float x2, float y2) {
 
 		float xDiff = Math.abs(x1 - x2);

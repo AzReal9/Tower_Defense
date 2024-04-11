@@ -18,6 +18,11 @@ import objects.Tower;
 import ui.ActionBar;
 import static helpz.Constants.Tiles.GRASS_TILE;
 
+/**
+ * The Playing class represents the game scene where the actual gameplay occurs.
+ * It manages the game loop, updating game elements, rendering graphics, and handling user input.
+ */
+
 public class Playing extends GameScene implements SceneMethods {
 
 	private int[][] lvl;

@@ -5,9 +5,16 @@ import static helpz.Constants.Towers.*;
 
 public class Tower {
 
-	private int x, y, id, towerType, cdTick, dmg;
-	private float range, cooldown;
-	private int tier;
+    private int x; // X-coordinate of the tower
+    private int y; // Y-coordinate of the tower
+    private int id; // Identifier of the tower
+    private int towerType; // Type of the tower
+    private int cdTick; // Cooldown tick
+    private int dmg; // Damage
+    private float range; // Attack range
+    private float cooldown; // Cooldown duration
+    private int tier; // Tower tier
+
 
 	public Tower(int x, int y, int id, int towerType) {
 		this.x = x;
@@ -24,6 +31,10 @@ public class Tower {
 		cdTick++;
 	}
 
+         /**
+     * Upgrades the tower to the next tier.
+     */
+        
 	public void upgradeTower() {
 		this.tier++;
 
@@ -50,6 +61,10 @@ public class Tower {
 		return cdTick >= cooldown;
 	}
 
+        /**
+     * Resets the tower's cool down tick to zero.
+     */
+        
 	public void resetCooldown() {
 		cdTick = 0;
 	}
@@ -69,6 +84,7 @@ public class Tower {
 
 	}
 
+        //getters and setters
 	public int getX() {
 		return x;
 	}

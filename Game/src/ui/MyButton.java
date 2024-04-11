@@ -5,113 +5,119 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+// MyButton class represents a clickable button in the UI
 public class MyButton {
 
-	public int x, y, width, height, id;
-	private String text;
-	private Rectangle bounds;
-	private boolean mouseOver, mousePressed;
+    public int x, y, width, height, id;
+    private String text;
+    private Rectangle bounds;
+    private boolean mouseOver, mousePressed;
 
-	// For normal Buttons
-	public MyButton(String text, int x, int y, int width, int height) {
-		this.text = text;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.id = -1;
+    // Constructor for normal buttons
+    public MyButton(String text, int x, int y, int width, int height) {
+        this.text = text;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.id = -1;
 
-		initBounds();
-	}
+        initBounds();
+    }
 
-	// For tile buttons
-	public MyButton(String text, int x, int y, int width, int height, int id) {
-		this.text = text;
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
-		this.id = id;
+    // Constructor for buttons associated with tiles
+    public MyButton(String text, int x, int y, int width, int height, int id) {
+        this.text = text;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.id = id;
 
-		initBounds();
-	}
+        initBounds();
+    }
 
-	private void initBounds() {
-		this.bounds = new Rectangle(x, y, width, height);
-	}
+    // Initialize button bounds
+    private void initBounds() {
+        this.bounds = new Rectangle(x, y, width, height);
+    }
 
-	public void draw(Graphics g) {
-		// Body
-		drawBody(g);
+    // Draw the button
+    public void draw(Graphics g) {
+        // Draw button body
+        drawBody(g);
 
-		// Border
-		drawBorder(g);
+        // Draw button border
+        drawBorder(g);
 
-		// Text
-		drawText(g);
-	}
+        // Draw button text
+        drawText(g);
+    }
 
-	private void drawBorder(Graphics g) {
+    // Draw button border
+    private void drawBorder(Graphics g) {
+        g.setColor(Color.black);
+        g.drawRect(x, y, width, height);
+        if (mousePressed) {
+            g.drawRect(x + 1, y + 1, width - 2, height - 2);
+            g.drawRect(x + 2, y + 2, width - 4, height - 4);
+        }
+    }
 
-		g.setColor(Color.black);
-		g.drawRect(x, y, width, height);
-		if (mousePressed) {
-			g.drawRect(x + 1, y + 1, width - 2, height - 2);
-			g.drawRect(x + 2, y + 2, width - 4, height - 4);
-		}
+    // Draw button body
+    private void drawBody(Graphics g) {
+        if (mouseOver)
+            g.setColor(Color.gray);
+        else
+            g.setColor(Color.WHITE);
+        g.fillRect(x, y, width, height);
+    }
 
-	}
+    // Draw button text
+    private void drawText(Graphics g) {
+        int w = g.getFontMetrics().stringWidth(text);
+        int h = g.getFontMetrics().getHeight();
+        g.drawString(text, x - w / 2 + width / 2, y + h / 2 + height / 2);
+    }
 
-	private void drawBody(Graphics g) {
-		if (mouseOver)
-			g.setColor(Color.gray);
-		else
-			g.setColor(Color.WHITE);
-		g.fillRect(x, y, width, height);
+    // Reset mouse over and mouse pressed states
+    public void resetBooleans() {
+        this.mouseOver = false;
+        this.mousePressed = false;
+    }
 
-	}
+    // Set the button text
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	private void drawText(Graphics g) {
-		int w = g.getFontMetrics().stringWidth(text);
-		int h = g.getFontMetrics().getHeight();
-		g.drawString(text, x - w / 2 + width / 2, y + h / 2 + height / 2);
+    // Set mouse pressed state
+    public void setMousePressed(boolean mousePressed) {
+        this.mousePressed = mousePressed;
+    }
 
-	}
+    // Set mouse over state
+    public void setMouseOver(boolean mouseOver) {
+        this.mouseOver = mouseOver;
+    }
 
-	public void resetBooleans() {
-		this.mouseOver = false;
-		this.mousePressed = false;
-	}
+    // Check if mouse is over the button
+    public boolean isMouseOver() {
+        return mouseOver;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    // Check if the button is pressed
+    public boolean isMousePressed() {
+        return mousePressed;
+    }
 
-	public void setMousePressed(boolean mousePressed) {
-		this.mousePressed = mousePressed;
-	}
+    // Get the bounds of the button
+    public Rectangle getBounds() {
+        return bounds;
+    }
 
-	public void setMouseOver(boolean mouseOver) {
-		this.mouseOver = mouseOver;
-	}
-
-	public boolean isMouseOver() {
-		return mouseOver;
-	}
-
-	public boolean isMousePressed() {
-		return mousePressed;
-	}
-
-	public Rectangle getBounds() {
-		return bounds;
-	}
-
-	public int getId() {
-		return id;
-	}
-
+    // Get the ID of the button (used for tiles)
+    public int getId() {
+        return id;
+    }
 }
-
-
-

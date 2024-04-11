@@ -10,6 +10,10 @@ public class Render {
 		this.game = game;
 	}
 
+        /**
+     * Renders the current state of the game based on the GameState.
+     * @param g The Graphics context.
+     */
 	public void render(Graphics g) {
 		switch (GameStates.gameState) {
 		case MENU:

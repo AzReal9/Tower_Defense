@@ -1,6 +1,11 @@
 
 package objects;
 
+/**
+ * The PathPoint class represents a point on the path that enemies follow.
+ * It stores the x and y coordinates of the point.
+ */
+
 public class PathPoint {
 	private int xCord, yCord;
 

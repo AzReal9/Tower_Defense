@@ -14,6 +14,9 @@ import javax.imageio.ImageIO;
 
 import objects.PathPoint;
 
+/**
+ * The LoadSave class provides methods for loading and saving game-related data.
+ */
 public class LoadSave {
 
 	public static BufferedImage getSpriteAtlas() {
@@ -103,6 +106,11 @@ public class LoadSave {
 		return list;
 	}
 
+        /**
+     * Retrieves path points from a level file.
+     * @param name The name of the level.
+     * @return A list of path points.
+     */
 	public static ArrayList<PathPoint> GetLevelPathPoints(String name) {
     File lvlFile = new File("res/" + name + ".txt");
 
@@ -128,6 +136,7 @@ public class LoadSave {
     }
 }
 
+        // Retrieves level data from a file.
 	public static int[][] GetLevelData(String name) {
 		File lvlFile = new File("res/" + name + ".txt");
 

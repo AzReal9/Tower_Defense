@@ -36,6 +36,9 @@ public class WaveManager {
 
 	}
 
+         /**
+     * Increase the wave index and reset wave tick and timer.
+     */
 	public void increaseWaveIndex() {
 		waveIndex++;
 		waveTick = 0;
@@ -52,11 +55,19 @@ public class WaveManager {
 		waveStartTimer = true;
 	}
 
+        //Get the next enemy type to spawn
 	public int getNextEnemy() {
 		enemySpawnTick = 0;
 		return waves.get(waveIndex).getEnemyList().get(enemyIndex++);
 	}
 
+        /**
+     * Create waves with different configurations.
+     * 0 = orc
+     * 1 = bat
+     * 2 = knight
+     * 3 = wolf
+     */
 	private void createWaves() {
 		waves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0))));
 		waves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0, 0))));
@@ -67,6 +78,7 @@ public class WaveManager {
 		waves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1))));
 		waves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1))));
 		waves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 1, 1, 1, 1, 2))));
+                waves.add(new Wave(new ArrayList<Integer>(Arrays.asList(0, 0, 0, 0, 1, 1, 2, 3, 3))));
 	}
 
 	public ArrayList<Wave> getWaves() {
